@@ -1,0 +1,14 @@
+library(readr)
+library(dplyr)
+#Trying to find dependance of Apparent Temperature as a function of actual temperature, Humidity, Wind conditions
+#and visibility
+myfile=read.csv('weather.csv')
+myfile
+mod=myfile[c(4:9)]
+summary(mod)
+#plot(mod)
+names(mod)=c("Temperature","Apparent Temperature","Humidity","Wind Speed","Wind Bearing", "Visibility")
+linreg=lm(mod$`Apparent Temperature`~.,data=mod)
+summary(linreg)
+#Except visibility, Apparent Temperature is strongly linearly correlated with other independant variables. 
+#Also since data set high, expected higher value of regression co-efficients
