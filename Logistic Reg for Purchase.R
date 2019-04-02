@@ -44,8 +44,8 @@ head(cbind(test_set,prob_pred2),10)
 
 #We need either 1 and 0 binary values
 #if prob > 0.5 make it 1, else 0
-y_pred1 = ifelse(prob_pred1 > 0.5, 1, 0)
-y_pred2 = ifelse(prob_pred2>0.2,1,0)
+y_pred1 = ifelse(prob_pred1 > 0.5, 1, 0) #This is where we introduce threshold
+y_pred2 = ifelse(prob_pred2>0.5,1,0)
 head(cbind(test_set$purchased, y_pred1),100)
 head(cbind(test_set$purchased, y_pred2),100)
 
@@ -59,4 +59,3 @@ library(caret)
 confusionMatrix(cm1)
 confusionMatrix(cm2)
 #caret library gives the sensitivity and specificity of confusion matrix
-#Model 2 gives a greater sensitivity but a lower specificity
